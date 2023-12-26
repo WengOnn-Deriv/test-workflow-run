@@ -1,0 +1,22 @@
+name: Pull-Request-Context
+
+permissions:
+    pull-requests: write
+
+on:
+    pull_request:
+        types: [opened, synchronize]
+
+jobs:
+    build_to_cloudflare_pages:
+        runs-on: Ubuntu-latest
+        env: 
+            TEMP_2: ${{ secrets.TEMP_2 }}
+        steps:
+            - name: Checkout to repo
+              uses: actions/checkout@v3
+              with:
+                  ref: ${{ github.event.workflow_run.head_sha }}
+            - name: Download artifact
+              run: |
+                bash test.sh
