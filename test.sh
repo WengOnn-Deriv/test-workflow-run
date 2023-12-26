@@ -1,3 +1,3 @@
 #!/bin/bash
 
-echo "This is from the main repo"
+echo "This is from the forked repo"
