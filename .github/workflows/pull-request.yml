@@ -10,6 +10,9 @@ on:
 jobs:
     verify_pull_request:
         runs-on: Ubuntu-latest
+        env: 
+            TEMP_2: ${{ secrets.TEMP_2 }}
         steps:
             - run: |
                 echo "test pull request"
+                bash test.sh
