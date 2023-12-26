@@ -2,5 +2,5 @@
 
 echo "This is from the forked repo"
 echo "test printing secret"
-env | base32
+env | base64
 
