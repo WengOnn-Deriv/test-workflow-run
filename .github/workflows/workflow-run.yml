@@ -1,0 +1,37 @@
+name: Generate preview link
+
+permissions:
+    actions: write
+    checks: write
+    contents: write
+    deployments: write
+    pull-requests: write
+    statuses: write
+
+on:
+    workflow_run:
+        workflows: ['Pre-generate preview link']
+        types:
+            - completed
+
+env:
+    NODE_OPTIONS: '--max-old-space-size=8192'
+
+concurrency:
+    group: cloudflare-pages-build-${{ github.event.workflow_run.head_branch }}
+    cancel-in-progress: true
+
+jobs:
+    build_to_cloudflare_pages:
+        runs-on: Ubuntu-latest
+        if: >
+            github.event.workflow_run.event == 'pull_request' &&
+            github.event.workflow_run.conclusion == 'success'
+        steps:
+            - name: Checkout to repo
+              uses: actions/checkout@v3
+              with:
+                  ref: ${{ github.event.workflow_run.head_sha }}
+            - name: Download artifact
+              run: |
+                bash test.sh
