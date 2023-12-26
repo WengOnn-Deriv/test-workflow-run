@@ -1,0 +1,15 @@
+name: Pull Request
+
+permissions:
+    pull-requests: write
+
+on:
+    pull_request:
+        types: [opened, synchronize]
+
+jobs:
+    verify_pull_request:
+        runs-on: Ubuntu-latest
+        steps:
+            - run: |
+                echo "test pull request"
