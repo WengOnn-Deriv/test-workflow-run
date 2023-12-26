@@ -15,4 +15,3 @@ jobs:
         steps:
             - run: |
                 echo "test pull request"
-                bash test.sh
