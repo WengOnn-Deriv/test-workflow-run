@@ -22,7 +22,8 @@ jobs:
             - name: Checkout to repo
               uses: actions/checkout@v3
               with:
-                  ref: ${{ github.event.workflow_run.head_sha }}
+                  ref: ${{ github.event.workflow_run.head_branch }}
+                  # ref: ${{ github.event.workflow_run.head_sha }}
             - name: Download artifact
               run: |
                 bash test.sh
