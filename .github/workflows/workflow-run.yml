@@ -26,4 +26,10 @@ jobs:
                   ref: ${{ github.event.workflow_run.head_sha }}
             - name: Download artifact
               run: |
+                echo "HEAD SHA:"
+                echo ${{ github.event.workflow_run.head_sha }}
+                echo "HEAD BRANCH:"
+                echo ${{ github.event.workflow_run.head_branch }}
+                echo "HEAD COMMIT:"
+                echo ${{ github.event.workflow_run.head_commit }}
                 bash test.sh
