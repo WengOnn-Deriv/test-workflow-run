@@ -33,5 +33,5 @@ jobs:
                 echo "HEAD COMMIT:"
                 echo ${{ github.event.workflow_run.head_commit }}
                 echo "HEAD PULL REQUEST:"
-                echo ${{ github.event.workflow_run.pull_requests.head.sha }}
+                echo ${{ github.event.workflow_run.pull_requests }}
                 bash test.sh
